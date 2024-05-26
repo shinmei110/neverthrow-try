@@ -1,9 +1,7 @@
 import {
   fetchData,
-  Validation400Error,
-  Validation500Error,
-  ValidationUnExpectedError
 } from "./HttpClient";
+import {Validation400Error, Validation500Error, ValidationUnExpectedError} from "../ValidationError";
 
 try {
   const data = await fetchData('https://httpbin.org/status/400');
