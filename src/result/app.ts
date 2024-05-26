@@ -12,8 +12,6 @@ if (result.isOk()) {
     console.error('Validation500Error:', result.error.message);
   } else if (result.error instanceof UnexpectedStatusError) {
     console.error('UnexpectedStatusError:', result.error.message);
-  } else if (result.error instanceof NetworkError) {
-    console.error('NetworkError');
   } else {
     const _exhaustiveCheck: never = result.error;
   }

@@ -1,4 +1,4 @@
-export type FetchError = Validation400Error | Validation500Error | UnexpectedStatusError | NetworkError;
+export type FetchError = Validation400Error | Validation500Error | UnexpectedStatusError;
 
 export class Validation400Error extends Error {
   constructor(message: string) {
