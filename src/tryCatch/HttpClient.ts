@@ -1,5 +1,5 @@
 import {HttpView} from "../HttpView";
-import {Validation400Error, Validation500Error, ValidationUnExpectedError} from "../ValidationError";
+import {UnexpectedStatusError, Validation400Error, Validation500Error} from "../ValidationError";
 
 export async function fetchData(url: string): Promise<HttpView> {
   const response: Response = await fetch(url);
@@ -11,7 +11,7 @@ export async function fetchData(url: string): Promise<HttpView> {
       case 500:
         throw new Validation500Error('Internal Server Error');
       default:
-        throw new ValidationUnExpectedError(`Unexpected status code: ${response.status}`);
+        throw new UnexpectedStatusError(`Unexpected status code: ${response.status}`);
     }
   }
 

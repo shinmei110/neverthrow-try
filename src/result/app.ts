@@ -1,24 +1,20 @@
-import {
-  fetchData,
-} from "../tryCatch/HttpClient";
-import {Validation400Error, Validation500Error, ValidationUnExpectedError} from "../ValidationError";
+import {fetchData} from "./HttpClient";
+import {NetworkError, UnexpectedStatusError, Validation400Error, Validation500Error} from "../ValidationError";
 
-try {
-  const data = await fetchData('https://httpbin.org/status/400');
-  // fetch成功時の処理
-  console.log(data);
-} catch (error: unknown) {
-  if (error instanceof Validation400Error) {
-    // 400エラー時の処理
-    console.error('Validation400Error:', error.message);
-  } else if (error instanceof Validation500Error) {
-    // 500エラー時の処理
-    console.error('Validation500Error:', error.message);
-  } else if (error instanceof ValidationUnExpectedError) {
-    // その他ステータスコードのエラー時の処理
-    console.error('UnexpectedStatusError:', error.message);
+const result = await fetchData('https://httpbin.org/status/400');
+
+if (result.isOk()) {
+  console.log(result.value);
+} else {
+  if (result.error instanceof Validation400Error) {
+    console.error('Validation400Error:', result.error.message);
+  } else if (result.error instanceof Validation500Error) {
+    console.error('Validation500Error:', result.error.message);
+  } else if (result.error instanceof UnexpectedStatusError) {
+    console.error('UnexpectedStatusError:', result.error.message);
+  } else if (result.error instanceof NetworkError) {
+    console.error('NetworkError');
   } else {
-    // ネットワークエラーや想定外のエラー時の処理
-    console.error('Unknown error:', error);
+    const _exhaustiveCheck: never = result.error;
   }
 }

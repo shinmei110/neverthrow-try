@@ -1,7 +1,7 @@
 import {
   fetchData,
 } from "./HttpClient";
-import {Validation400Error, Validation500Error, ValidationUnExpectedError} from "../ValidationError";
+import {Validation400Error, Validation500Error} from "../ValidationError";
 
 try {
   const data = await fetchData('https://httpbin.org/status/400');
@@ -14,9 +14,6 @@ try {
   } else if (error instanceof Validation500Error) {
     // 500エラー時の処理
     console.error('Validation500Error:', error.message);
-  } else if (error instanceof ValidationUnExpectedError) {
-    // その他ステータスコードのエラー時の処理
-    console.error('UnexpectedStatusError:', error.message);
   } else {
     // ネットワークエラーや想定外のエラー時の処理
     console.error('Unknown error:', error);
