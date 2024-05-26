@@ -1,3 +1,5 @@
+import {HttpView} from "../HttpView";
+
 export async function fetchData(url: string): Promise<HttpView> {
   const response: Response = await fetch(url);
 
@@ -34,14 +36,4 @@ export class ValidationUnExpectedError extends Error {
     super(message);
     this.name = 'ValidationUnExpectedError';
   }
-}
-
-export interface HttpView {
-  headers: Header;
-}
-
-export interface Header {
-  Accept: string;
-  Host: string;
-  UserAgent: string;
 }

@@ -3,7 +3,7 @@ import {
   Validation400Error,
   Validation500Error,
   ValidationUnExpectedError
-} from "./HttpClient.js";
+} from "../tryCatch/HttpClient";
 
 try {
   const data = await fetchData('https://httpbin.org/status/400');
