@@ -1,7 +1,7 @@
-import {HttpView} from "../HttpView";
+import {FetchedData} from "../../fetchedData";
 import {UnexpectedStatusError, Validation400Error, Validation500Error} from "../ValidationError";
 
-export async function fetchData(url: string): Promise<HttpView> {
+export async function fetchData(url: string): Promise<FetchedData> {
   const response: Response = await fetch(url);
 
   if (!response.ok) {

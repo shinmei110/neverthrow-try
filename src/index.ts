@@ -1,5 +1,5 @@
-import {fetchData} from "./result/HttpClient.js";
-import {NetworkError, UnexpectedStatusError, Validation400Error, Validation500Error} from "./ValidationError.js";
+import {fetchData} from "./errorHandlingByStatusCode/result/HttpClient.js";
+import {NetworkError, UnexpectedStatusError, Validation400Error, Validation500Error} from "./errorHandlingByStatusCode/ValidationError";
 
 const result = await fetchData('https://httpbin.org/status/400');
 

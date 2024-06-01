@@ -1,11 +1,11 @@
-import {HttpView} from "../HttpView.js";
-import {FetchError, UnexpectedStatusError, Validation400Error, Validation500Error} from "../ValidationError.js";
+import {FetchedData} from "../../fetchedData";
+import {FetchError, UnexpectedStatusError, Validation400Error, Validation500Error} from "../ValidationError";
 import {err, ok, Result} from "neverthrow";
 
-export async function fetchData(url: string): Promise<Result<HttpView, FetchError>> {
+export async function fetchData(url: string): Promise<Result<FetchedData, FetchError>> {
   const response = await fetch(url);
     if (response.ok) {
-      return ok(await response.json() as HttpView);
+      return ok(await response.json() as FetchedData);
     } else {
       switch (response.status) {
         case 400:

@@ -1,4 +1,4 @@
-export interface HttpView {
+export interface FetchedData {
   headers: Header;
 }
 
